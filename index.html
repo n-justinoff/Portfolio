@@ -3,531 +3,543 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nirmal Justin - UI/UX Portfolio</title>
+    <title>Nirmal Justin | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* --- GLOBAL & RESET --- */
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #ffffff;
-            --accent-color: #3b82f6; /* Blue accent */
-            --secondary-text: #a1a1aa;
-            --card-bg: #18181b;
-            --nav-height: 80px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg-body: #000000;
+            --bg-app: #141414;
+            --white: #ffffff;
+            --grey: #b3b3b3;
+            --red: #E50914;
+            --green: #46d369;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
+            background-color: var(--bg-body);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevent scrolling on body, scroll inside app */
         }
 
-        /* --- 1. Top Navigation (Fixed & Separate) --- */
-        nav {
-            position: fixed;
+        /* --- THE TV CONTAINER (Floating Look) --- */
+        .app-container {
+            width: 95%;
+            height: 95vh;
+            max-width: 1800px;
+            background-color: var(--bg-app);
+            border-radius: 20px;
+            position: relative;
+            overflow-y: auto; /* Scroll inside this container */
+            box-shadow: 0 0 50px rgba(20,20,20,0.5);
+            /* Hide scrollbar for clean look */
+            scrollbar-width: none; 
+        }
+        .app-container::-webkit-scrollbar { display: none; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: var(--nav-height);
+            padding: 30px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 5%;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 100;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
+        .logo-area {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            align-items: center;
+            gap: 15px;
         }
 
-        .nav-links a {
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-color);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
+        .logo-box {
+            width: 35px;
+            height: 35px;
+            background-color: var(--red);
+            border-radius: 6px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
-            padding: 0 10%;
-            position: relative;
-            /* 2. Increased gap between hero and next section */
-            margin-bottom: 150px; 
-            padding-top: var(--nav-height); /* Prevent overlap with fixed nav */
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 span {
-            color: var(--accent-color);
-        }
-
-        .hero p {
+            font-weight: 900;
             font-size: 1.2rem;
-            color: var(--secondary-text);
-            max-width: 600px;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        /* 3. Download Resume Button */
-        .cta-button {
-            padding: 1rem 2rem;
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: transform 0.2s, background-color 0.2s;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            background-color: var(--accent-color);
             color: white;
         }
 
-        /* --- Work Section --- */
-        .section-title {
-            padding: 0 10%;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            padding: 0 10% 10% 10%;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            position: relative;
-            aspect-ratio: 4/3;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.3s;
-        }
-
-        .project-card:hover .project-image {
-            opacity: 0.4;
-        }
-
-        .project-info-overlay {
+        /* The Pill Navigation (Center) */
+        .nav-pill {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+            background: rgba(0,0,0,0.3); /* Slight dark backing */
+            padding: 4px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
         }
 
-        .project-card:hover .project-info-overlay {
-            opacity: 1;
-            transform: translateY(0);
+        .nav-item {
+            color: var(--grey);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
-        .project-info-overlay h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .nav-item:hover { color: var(--white); }
+
+        .nav-item.active {
+            background-color: var(--white);
+            color: black;
+            font-weight: 700;
         }
 
-        .project-info-overlay p {
-            color: var(--secondary-text);
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+            color: var(--white);
         }
 
-        /* --- Preview Modal (The Pop-up) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
+        /* --- HERO SECTION (Exact Match) --- */
+        .hero-card {
+            width: 96%;
+            height: 85vh; /* Tall hero like screenshot */
+            margin: 20px auto 0;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            /* Using a high-res placeholder that looks like design work */
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Gradient Overlay: Clear top, Dark bottom */
+        .hero-overlay {
+            position: absolute;
+            top: 0; 
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 2000;
-            backdrop-filter: blur(5px);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(20,20,20,0.6) 80%, #141414 100%);
+            border-radius: 16px;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
+        .hero-content {
+            position: absolute;
+            bottom: 60px; /* Positioned up from bottom */
+            left: 60px;
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        /* The "Logo" Title */
+        .hero-title {
+            font-size: 6rem; /* Massive size */
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            /* Gradient text effect similar to metallic logos */
+            background: linear-gradient(to bottom, #ffffff 0%, #cccccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
+        }
+
+        /* Metadata Row (Show • 2025 • TV-MA) */
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .match-score { color: var(--green); font-weight: 800; }
+        
+        .meta-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--grey);
+            border-radius: 50%;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #ddd;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            border: none;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+        .btn:hover { transform: scale(1.05); }
+
+        .btn-white { background-color: var(--white); color: black; }
+        .btn-grey { background-color: rgba(109, 109, 110, 0.7); color: var(--white); }
+
+        /* "Coming June 27" Badge on the Right */
+        .date-badge {
+            position: absolute;
+            bottom: 60px;
+            right: 60px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-weight: 600;
+            border-left: 3px solid var(--red); /* Red accent line */
+        }
+
+        /* --- ROWS SECTION --- */
+        .rows-container {
+            padding: 20px 60px 60px 60px;
+            margin-top: -40px; /* Pull up slightly */
+            position: relative;
+            z-index: 20;
+        }
+
+        .row-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #e5e5e5;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+        .row::-webkit-scrollbar { display: none; }
+
+        .card {
+            min-width: 300px;
+            height: 170px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .card:hover {
+            transform: scale(1.1); /* Pop effect */
+            z-index: 50;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 10px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 0 0 8px 8px;
+        }
+        .card:hover .card-overlay { opacity: 1; }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
         }
 
         .modal-content {
-            background: var(--card-bg);
-            width: 90%;
-            max-width: 600px;
-            padding: 2rem;
-            border-radius: 20px;
-            position: relative;
-            text-align: center;
-            transform: scale(0.9);
-            transition: transform 0.3s;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--secondary-text);
-        }
-
-        .modal-btn {
-            margin-top: 1.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* --- 4. Full Page Project View (The "Inner Page") --- */
-        .full-project-view {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--bg-color);
-            z-index: 3000; /* Sit on top of everything including Nav */
-            overflow-y: auto;
-            transform: translateY(100%); /* Hidden by default */
-            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            padding: 0;
-        }
-
-        .full-project-view.active {
-            transform: translateY(0);
-        }
-
-        /* Floating Back Button */
-        .floating-back-btn {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 10px 24px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            cursor: pointer;
-            z-index: 3001;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        .floating-back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .project-detail-container {
-            max-width: 900px;
-            margin: 100px auto 50px auto; /* Margin top accounts for back button */
-            padding: 0 20px;
-        }
-
-        .detail-header {
-            margin-bottom: 40px;
-        }
-
-        .detail-header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .detail-tags {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tag {
-            background: #27272a;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: #a1a1aa;
-        }
-
-        .detail-hero-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
+            background-color: #181818;
+            margin: 50px auto;
+            width: 90%; max-width: 900px;
             border-radius: 12px;
-            margin-bottom: 40px;
-            background-color: #27272a;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
-        .detail-content h2 {
-            font-size: 1.8rem;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            color: var(--accent-color);
+        .close-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: #181818; color: white;
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10; font-size: 1.5rem;
         }
 
-        .detail-content p {
-            line-height: 1.7;
-            color: #d4d4d8;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
+        .modal-header { height: 450px; background-size: cover; background-position: center; position: relative; }
+        .modal-body { padding: 40px; margin-top: -100px; position: relative; background: linear-gradient(to bottom, transparent, #181818 100px); }
+        
+        /* Grid for details */
+        .detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 30px; }
+        .tag-pill { display: inline-block; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; margin: 2px; }
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .work-grid { padding: 0 5% 10% 5%; grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Could add hamburger menu later */
-            .detail-header h1 { font-size: 2rem; }
-        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">NIRMAL JUSTIN</div>
-        <ul class="nav-links">
-            <li><a href="#work">Work</a></li>
-            <li><a href="mailto:n.justinoff@gmail.com">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="app-container">
+        
+        <div class="navbar">
+            <div class="logo-area">
+                <div class="logo-box">N</div>
+            </div>
 
-    <header class="hero">
-        <h1>Crafting Digital<br><span>Experiences</span></h1>
-        <p>I design user-centric interfaces that solve complex problems with simplicity and elegance.</p>
-        <a href="resume.pdf" download class="cta-button">Download Resume</a>
-    </header>
+            <div class="nav-pill">
+                <a href="#" class="nav-item">Search</a>
+                <a href="#" class="nav-item active">Home</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="mailto:email@me.com" class="nav-item">Contact</a>
+            </div>
 
-    <div class="section-title">Selected Work</div>
-
-    <section id="work" class="work-grid">
-        <div class="project-card" onclick="openPreview('dashboard')">
-            <img src="https://placehold.co/800x600/18181b/FFF?text=Analytical+Dashboard" alt="Project 1" class="project-image">
-            <div class="project-info-overlay">
-                <h3>Admin Dashboard</h3>
-                <p>Data Visualization • UI Design</p>
+            <div class="nav-right">
+                <i class="fas fa-search" style="margin-right:20px;"></i>
+                <i class="fas fa-bell"></i>
             </div>
         </div>
 
-        <div class="project-card" onclick="openPreview('health')">
-            <img src="https://placehold.co/800x600/18181b/FFF?text=Health+App" alt="Project 2" class="project-image">
-            <div class="project-info-overlay">
-                <h3>Wellness App</h3>
-                <p>Mobile App • UX Research</p>
+        <div class="hero-card" id="hero-bg">
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="hero-title">AI POWERED<br>DESIGNER</div>
+                
+                <div class="hero-meta">
+                    <span class="match-score">98% Match</span>
+                    <span class="meta-dot"></span>
+                    <span>2025</span>
+                    <span class="meta-dot"></span>
+                    <span>Lead UI/UX</span>
+                    <span class="meta-dot"></span>
+                    <span style="border:1px solid #777; padding:0 5px; font-size:0.8rem;">HD</span>
+                </div>
+
+                <p class="hero-desc">I love watching movies, so why not a portfolio like that? Specializing in complex systems, AI interfaces, and educational platforms.</p>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-white" onclick="scrollToWork()"><i class="fas fa-play"></i> View Work</button>
+                    <button class="btn btn-grey"><i class="fas fa-info-circle"></i> More Info</button>
+                </div>
+            </div>
+
+            <div class="date-badge">
+                <i class="far fa-calendar-alt" style="color:#E50914;"></i>
+                <span>Available for Hire</span>
             </div>
         </div>
 
-        <div class="project-card" onclick="openPreview('ecommerce')">
-            <img src="https://placehold.co/800x600/18181b/FFF?text=E-Commerce" alt="Project 3" class="project-image">
-            <div class="project-info-overlay">
-                <h3>Fashion Store</h3>
-                <p>Web Design • Prototyping</p>
+        <div class="rows-container" id="work-section">
             </div>
-        </div>
-    </section>
 
-    <div class="modal-overlay" id="previewModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closePreview()">&times;</span>
-            <h2 id="previewTitle">Project Name</h2>
-            <p id="previewDesc" style="margin: 1rem 0; color: #a1a1aa;">Short description goes here.</p>
-            <button class="modal-btn" onclick="openFullProject()">View Project</button>
-        </div>
     </div>
 
-    <div class="full-project-view" id="fullProjectView">
-        <button class="floating-back-btn" onclick="closeFullProject()">
-            <span>← Back to Home</span>
-        </button>
-
-        <div class="project-detail-container">
-            <div class="detail-header">
-                <div class="detail-tags" id="fullTags">
-                    </div>
-                <h1 id="fullTitle">Project Title</h1>
-                <p id="fullSubtitle" style="color: #a1a1aa; font-size: 1.2rem;">A brief overview of the project scope and impact.</p>
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header" id="modal-header">
+                <div style="position:absolute; bottom:0; width:100%; height:100%; background:linear-gradient(to top, #181818, transparent);"></div>
             </div>
-
-            <img src="" id="fullImage" class="detail-hero-img" alt="Project Hero">
-
-            <div class="detail-content" id="fullContent">
+            <div class="modal-body">
+                <h1 id="modal-title" style="font-size:3rem; margin:0 0 10px 0;">Title</h1>
+                <div class="hero-meta">
+                    <span class="match-score" id="modal-tag">Featured</span>
+                    <span class="meta-dot"></span>
+                    <span id="modal-year">2025</span>
+                    <span class="meta-dot"></span>
+                    <span id="modal-role">Role</span>
                 </div>
+                
+                <div class="hero-buttons">
+                    <a id="btn-link" href="#" target="_blank" class="btn btn-white"><i class="fas fa-external-link-alt"></i> View Project</a>
+                </div>
+
+                <div class="detail-grid">
+                    <div id="modal-desc" style="line-height:1.6; color:#ccc;"></div>
+                    <div>
+                        <h4 style="color:#777; margin-top:0;">Technologies</h4>
+                        <div id="modal-tech"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Data for Projects (Simulating the uploaded document content)
-        const projects = {
-            'dashboard': {
-                title: "Administrative Penalties Dashboard",
-                subtitle: "A comprehensive analytical tool for tracking reportable collisions.",
-                tags: ["UI Design", "Data Viz", "Figma"],
-                image: "https://placehold.co/1200x600/18181b/FFF?text=Dashboard+Details",
-                content: `
-                    <h2>The Challenge</h2>
-                    <p>The goal was to visualize complex datasets regarding administrative penalties and collision reports. Users needed a way to quickly identify trends and outliers without getting overwhelmed by raw data.</p>
-                    
-                    <h2>The Solution</h2>
-                    <p>I designed a dark-mode dashboard focusing on high-contrast data visualization. Key metrics were bubbled to the top, with drill-down capabilities for specific regions.</p>
-
-                    <h2>Process</h2>
-                    <p>1. <strong>Discovery:</strong> Analyzed existing spreadsheets and interviewed stakeholders.<br>
-                    2. <strong>Wireframing:</strong> Created low-fidelity layouts to determine information architecture.<br>
-                    3. <strong>High-Fidelity:</strong> Applied the design system to create a polished UI.</p>
-                `
+        // --- DATA ---
+        const data = [
+            {
+                category: "Featured Projects",
+                items: [
+                    {
+                        id: 1,
+                        title: "Netflix AI Redesign",
+                        role: "Lead Designer",
+                        year: "2025",
+                        tag: "99% Match",
+                        desc: "<b>Challenge:</b> Users struggle to find specific scenes.<br><b>Solution:</b> Designed a Voice AI search that understands context like 'Show me the coffee shop scene in Friends'.<br><b>Impact:</b> Reduced search friction by 40%.",
+                        tech: ["Voice UI", "AI Search", "Figma"],
+                        image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop",
+                        link: "https://www.figma.com"
+                    },
+                    {
+                        id: 2,
+                        title: "Guardian Bubble",
+                        role: "Product Design",
+                        year: "2025",
+                        tag: "Safety Tech",
+                        desc: "A multi-platform safety ecosystem for modern families. Features live GPS tracking, geofencing with Red Zone alerts, and 'Superlock' for controlled phone access.",
+                        tech: ["Mobile App", "GPS", "SaaS"],
+                        image: "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2070&auto=format&fit=crop",
+                        link: "#"
+                    },
+                    {
+                        id: 3,
+                        title: "The Sportsbook",
+                        role: "Web Platform",
+                        year: "2025",
+                        tag: "EdTech",
+                        desc: "An all-in-one sports education platform catering to students, coaches, and schools. Streamlines PE curriculum management and summer camp coordination.",
+                        tech: ["Flutter", "Web App", "Dashboard"],
+                        image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop",
+                        link: "#"
+                    }
+                ]
             },
-            'health': {
-                title: "Health & Wellness App",
-                subtitle: "Redesigning the user journey for daily fitness tracking.",
-                tags: ["Mobile App", "UX Research", "Prototyping"],
-                image: "https://placehold.co/1200x600/18181b/FFF?text=App+Screens",
-                content: `
-                    <h2>Overview</h2>
-                    <p>The existing app had a high drop-off rate during onboarding. My task was to streamline the sign-up process and make the daily tracking dashboard more engaging.</p>
-                    
-                    <h2>Key Features</h2>
-                    <p>We introduced gamification elements and simplified the calorie logging process to just two taps. The new UI utilizes soft gradients and approachable typography.</p>
-                `
-            },
-            'ecommerce': {
-                title: "Fashion E-Commerce",
-                subtitle: "A seamless shopping experience for a modern clothing brand.",
-                tags: ["Web Design", "Interaction", "User Flow"],
-                image: "https://placehold.co/1200x600/18181b/FFF?text=Fashion+Web+Design",
-                content: `
-                    <h2>Concept</h2>
-                    <p>A minimalist approach to e-commerce, allowing the photography to take center stage. The focus was on smooth transitions and a frictionless checkout experience.</p>
-                    
-                    <h2>Results</h2>
-                    <p>User testing showed a 25% increase in conversion rate for the checkout flow compared to the previous design.</p>
-                `
+            {
+                category: "Concept & Experimental",
+                items: [
+                    {
+                        id: 4,
+                        title: "Sign Language AI",
+                        role: "Concept",
+                        year: "2024",
+                        tag: "Accessibility",
+                        desc: "Making Google Assistant accessible to the deaf community via mobile vision sign language detection.",
+                        tech: ["AI/ML", "Accessibility", "Mobile Vision"],
+                        image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop",
+                        link: "#"
+                    },
+                    {
+                        id: 5,
+                        title: "Vision Pro Colors",
+                        role: "Spatial Design",
+                        year: "2024",
+                        tag: "AR/VR",
+                        desc: "An AR app for Apple Vision Pro that provides real-time color correction for color blind individuals.",
+                        tech: ["Spatial Computing", "VisionOS", "AR"],
+                        image: "https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=2070&auto=format&fit=crop",
+                        link: "#"
+                    }
+                ]
             }
-        };
+        ];
 
-        let currentProjectId = '';
-
-        // Open the Quick Preview Pop-up
-        function openPreview(id) {
-            currentProjectId = id;
-            const data = projects[id];
-            document.getElementById('previewTitle').innerText = data.title;
-            document.getElementById('previewDesc').innerText = data.subtitle;
-            
-            document.getElementById('previewModal').classList.add('active');
-        }
-
-        // Close the Quick Preview
-        function closePreview() {
-            document.getElementById('previewModal').classList.remove('active');
-        }
-
-        // Open the Full Page "Inner Page"
-        function openFullProject() {
-            const data = projects[currentProjectId];
-            
-            // Populate Data
-            document.getElementById('fullTitle').innerText = data.title;
-            document.getElementById('fullSubtitle').innerText = data.subtitle;
-            document.getElementById('fullImage').src = data.image;
-            document.getElementById('fullContent').innerHTML = data.content;
-            
-            // Populate Tags
-            const tagsContainer = document.getElementById('fullTags');
-            tagsContainer.innerHTML = ''; // Clear old tags
-            data.tags.forEach(tag => {
-                const span = document.createElement('span');
-                span.className = 'tag';
-                span.innerText = tag;
-                tagsContainer.appendChild(span);
+        // --- RENDER ---
+        const container = document.getElementById('work-section');
+        
+        data.forEach(cat => {
+            container.innerHTML += `<h3 class="row-title">${cat.category}</h3>`;
+            let rowHtml = `<div class="row">`;
+            cat.items.forEach(item => {
+                rowHtml += `
+                    <div class="card" onclick="openModal(${item.id})" style="background-image: url('${item.image}')">
+                        <div class="card-overlay">
+                            <h4 style="margin:0">${item.title}</h4>
+                            <small style="color:#ccc">${item.role}</small>
+                        </div>
+                    </div>
+                `;
             });
-
-            // Close the preview modal first
-            closePreview();
-            
-            // Show the full page view
-            document.getElementById('fullProjectView').classList.add('active');
-            
-            // Scroll to top of the new view
-            document.getElementById('fullProjectView').scrollTop = 0;
-        }
-
-        // Close the Full Page View (Back Button)
-        function closeFullProject() {
-            document.getElementById('fullProjectView').classList.remove('active');
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('previewModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePreview();
-            }
+            rowHtml += `</div>`;
+            container.innerHTML += rowHtml;
         });
+
+        // --- SCROLL ---
+        function scrollToWork() {
+            document.getElementById('work-section').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // --- MODAL ---
+        const modal = document.getElementById('project-modal');
+        const closeBtn = document.querySelector('.close-btn');
+
+        function openModal(id) {
+            let item;
+            data.forEach(c => {
+                const found = c.items.find(i => i.id === id);
+                if(found) item = found;
+            });
+            
+            if(!item) return;
+
+            document.getElementById('modal-header').style.backgroundImage = `url('${item.image}')`;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-tag').innerText = item.tag;
+            document.getElementById('modal-year').innerText = item.year;
+            document.getElementById('modal-role').innerText = item.role;
+            document.getElementById('modal-desc').innerHTML = item.desc;
+            document.getElementById('btn-link').href = item.link;
+            
+            document.getElementById('modal-tech').innerHTML = item.tech.map(t => `<span class="tag-pill">${t}</span>`).join('');
+
+            modal.style.display = "block";
+        }
+
+        closeBtn.onclick = () => modal.style.display = "none";
+        window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+
     </script>
 </body>
 </html>
