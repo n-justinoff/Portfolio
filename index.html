@@ -3,164 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nirmal Justin | AI Powered UI/UX Designer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Nirmal Justin | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CSS STYLES */
+        /* --- TV APP STYLE CSS --- */
         :root {
-            --bg-color: #141414;
-            --modal-bg: #181818;
-            --primary-red: #e50914;
-            --text-white: #ffffff;
+            --bg-body: #050505; /* Outer dark background */
+            --bg-app: #141414;  /* The "TV Screen" background */
+            --primary-white: #ffffff;
             --text-grey: #b3b3b3;
-            --tag-green: #46d369;
+            --accent-red: #E50914;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--primary-white);
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            padding: 40px; /* Creates the "floating" look */
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Navbar */
+        /* The "TV Screen" Container */
+        .app-container {
+            width: 100%;
+            max-width: 1600px;
+            background-color: var(--bg-app);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            min-height: 90vh;
+            border: 1px solid #333;
+        }
+
+        /* --- NAVIGATION (PILL STYLE) --- */
         .navbar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px 4%;
-            position: fixed;
+            justify-content: space-between;
+            padding: 30px 50px;
+            position: absolute;
             top: 0;
-            width: 92%;
-            z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0));
-            transition: background-color 0.3s;
+            width: 100%;
+            z-index: 100;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
         }
 
-        .navbar .logo {
-            color: var(--primary-red);
-            font-weight: 900;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-links a {
-            color: var(--text-white);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover { color: var(--text-grey); }
-
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            position: relative;
-            background-size: cover;
-            background-position: center;
+        .logo-section {
             display: flex;
             align-items: center;
-            padding-left: 4%;
+            gap: 15px;
         }
 
-        .hero::after {
-            content: '';
+        .logo-box {
+            background: var(--accent-red);
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 10px rgba(229, 9, 20, 0.4);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        /* The Pill Nav in Center */
+        .nav-pill {
+            display: flex;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-item {
+            color: var(--text-grey);
+            text-decoration: none;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item.active {
+            background-color: white;
+            color: black;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* --- HERO CARD --- */
+        .hero-card {
+            height: 85vh;
+            width: 96%;
+            margin: 20px auto 0 auto; /* Centered with top margin */
+            border-radius: 24px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transition: background-image 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        /* Gradient Overlay for text readability */
+        .hero-overlay {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 400px;
-            background: linear-gradient(180deg, transparent, var(--bg-color));
+            height: 100%;
+            background: linear-gradient(0deg, #141414 0%, rgba(20,20,20,0.4) 30%, rgba(0,0,0,0.2) 100%);
         }
 
         .hero-content {
+            position: absolute;
+            bottom: 80px;
+            left: 60px;
             max-width: 700px;
             z-index: 10;
-            padding-right: 20px;
         }
 
-        .hero-title {
-            font-size: 4.5rem;
+        .hero-logo-text {
+            font-family: 'Inter', sans-serif;
             font-weight: 900;
-            margin-bottom: 5px;
+            font-size: 5rem;
+            margin-bottom: 15px;
             line-height: 1;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            background: linear-gradient(to bottom, #fff, #ddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            color: #e5e5e5;
+            margin-bottom: 25px;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         
-        .hero-subtitle {
-             font-size: 1.4rem;
-             margin-bottom: 20px;
-             font-weight: 400;
-             text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        /* The dots between items */
+        .dot-separator {
+            color: #e50914;
+            font-size: 1.5rem;
+            line-height: 0;
+            margin: 0 5px;
+        }
+
+        .hero-desc {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            max-width: 550px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
         }
 
         .btn {
-            padding: 12px 30px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            font-size: 1.1rem;
-            margin-right: 15px;
+            padding: 14px 35px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: transform 0.2s, opacity 0.2s;
-            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn:hover { transform: scale(1.05); }
+
+        .btn-white { background: white; color: black; }
+        .btn-white:hover { background: #ddd; }
+        
+        .btn-dark { background: rgba(109, 109, 110, 0.6); color: white; backdrop-filter: blur(10px); }
+        .btn-dark:hover { background: rgba(109, 109, 110, 0.8); }
+
+        /* "Coming June 27" Badge style */
+        .date-badge {
+            position: absolute;
+            bottom: 60px;
+            right: 60px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
         }
 
-        .btn-primary { background-color: var(--text-white); color: black; }
-        .btn-secondary { background-color: rgba(109, 109, 110, 0.7); color: var(--text-white); }
-        .btn:hover { opacity: 0.9; transform: scale(1.05); }
-
-        /* Projects Rows */
-        .main-content {
-            margin-top: -150px; 
+        /* --- ROWS --- */
+        .rows-container {
+            margin-top: -60px; /* Pull up slightly over hero gradient */
+            padding-bottom: 60px;
             position: relative;
             z-index: 20;
-            padding-bottom: 50px;
+            padding-left: 60px; /* Align with hero text */
         }
 
-        .category-title {
-            margin-left: 4%;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-            font-weight: 700;
+        .row-header {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
             color: #e5e5e5;
         }
 
-        .row {
+        .row-scroll {
             display: flex;
+            gap: 20px;
             overflow-x: auto;
-            padding: 10px 4%;
-            gap: 10px;
-            scroll-behavior: smooth;
+            padding-bottom: 20px;
+            padding-right: 60px;
         }
+        
+        .row-scroll::-webkit-scrollbar { display: none; }
 
-        .row::-webkit-scrollbar { display: none; }
-
-        .card {
-            min-width: 300px;
-            height: 170px;
-            border-radius: 4px;
+        .project-card {
+            min-width: 320px;
+            height: 180px;
+            border-radius: 12px;
             background-size: cover;
             background-position: center;
             cursor: pointer;
-            transition: transform 0.3s, z-index 0.3s;
+            transition: transform 0.3s, border-color 0.3s;
             position: relative;
+            border: 2px solid transparent;
         }
 
-        .card:hover {
-            transform: scale(1.15);
-            z-index: 99;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        .project-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(255,255,255,0.8);
+            z-index: 50;
         }
 
         .card-info {
@@ -168,153 +293,120 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 30px 10px 10px 10px;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 20%, transparent);
+            padding: 20px 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             opacity: 0;
             transition: opacity 0.3s;
+            border-radius: 0 0 12px 12px;
         }
 
-        .card:hover .card-info { opacity: 1; }
+        .project-card:hover .card-info { opacity: 1; }
 
-        /* --- NEW UPGRADED MODAL --- */
+        /* --- MODAL (Kept consistent with new style) --- */
         .modal {
             display: none;
             position: fixed;
-            z-index: 2000;
+            z-index: 3000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0,0,0,0.9);
             overflow-y: auto;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
         }
-
-        .modal-content {
-            background-color: var(--modal-bg);
-            margin: 30px auto;
-            width: 95%;
-            max-width: 950px;
-            border-radius: 10px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            animation: fadeIn 0.4s;
-            overflow: hidden;
-        }
-
-        .modal-header {
-            height: 500px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .modal-gradient {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(to top, var(--modal-bg), transparent);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #181818;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 2001;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Modal Inner Layout */
-        .modal-body {
-            padding: 0 50px 50px 50px;
-            margin-top: -100px; /* Overlap header */
-            position: relative;
-            z-index: 10;
-        }
-
-        .modal-title { font-size: 3.5rem; margin: 0 0 10px 0; font-weight: 900; line-height: 1; }
         
-        .modal-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            font-weight: bold;
-            align-items: center;
-            flex-wrap: wrap;
+        .modal-content {
+            background-color: #181818;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #333;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            animation: fadeIn 0.4s ease;
         }
 
-        .tag-highlight { color: var(--tag-green); font-weight: 800; }
-        .year-badge { color: #aaa; }
-        .meta-badge { border: 1px solid #777; padding: 3px 8px; font-size: 0.8rem; color: #ddd; text-transform: uppercase; }
-
-        .modal-controls { margin-bottom: 30px; display: flex; gap: 15px; }
-
-        /* Grid Layout for Content */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            margin-top: 40px;
+        .modal-header { height: 500px; background-size: cover; background-position: center; position: relative; }
+        .modal-gradient { position: absolute; bottom: 0; width: 100%; height: 300px; background: linear-gradient(to top, #181818, transparent); }
+        
+        .close-btn { 
+            position: absolute; top: 25px; right: 25px; 
+            font-size: 24px; cursor: pointer; 
+            background: rgba(30,30,30,0.8); color: white;
+            width: 45px; height: 45px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.2s;
+            z-index: 3002;
         }
+        .close-btn:hover { background: white; color: black; }
 
-        .section-title { font-size: 1.5rem; color: white; margin-bottom: 15px; border-left: 4px solid var(--primary-red); padding-left: 15px; }
-        .modal-text { font-size: 1.1rem; line-height: 1.7; color: #dcdcdc; margin-bottom: 25px; white-space: pre-line; }
+        .modal-body { padding: 50px; margin-top: -100px; position: relative; z-index: 10; }
+        .modal-title { font-size: 3.5rem; margin: 0 0 10px 0; font-weight: 900; line-height: 1; }
+        .modal-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 25px; font-weight: 500; color: #aaa; }
+        .highlight-tag { color: #46d369; font-weight: 800; letter-spacing: 0.5px; }
+        
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; margin-top: 40px; }
+        .section-title { font-size: 1.2rem; color: white; margin-bottom: 15px; border-left: 3px solid var(--accent-red); padding-left: 15px; font-weight: 700; }
+        .modal-text { font-size: 1.1rem; line-height: 1.7; color: #ccc; margin-bottom: 25px; }
+        
+        .tech-sidebar { background: #222; padding: 25px; border-radius: 12px; height: fit-content; border: 1px solid #333; }
+        .tech-tag { display: block; color: #fff; font-size: 0.9rem; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #333; }
 
-        .tech-sidebar { background: #252525; padding: 20px; border-radius: 8px; height: fit-content; }
-        .tech-tag { display: block; color: #fff; font-size: 0.95rem; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 8px; }
-
-        /* Gallery */
-        .gallery-section { margin-top: 40px; }
-        .gallery-container {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-        .gallery-img {
-            height: 200px;
-            border-radius: 4px;
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-        .gallery-img:hover { transform: scale(1.05); }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
-            .modal-body { padding: 20px; margin-top: -50px; }
-            .modal-title { font-size: 2rem; }
+        @media (max-width: 1024px) {
+            body { padding: 0; }
+            .app-container { border-radius: 0; height: 100vh; border: none; }
+            .hero-logo-text { font-size: 3rem; }
+            .nav-pill { display: none; } /* Hide complicated nav on mobile */
+            .rows-container { padding-left: 20px; }
+            .hero-content { left: 20px; bottom: 40px; }
+            .date-badge { display: none; }
             .content-grid { grid-template-columns: 1fr; }
-            .modal-header { height: 300px; }
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">NIRMAL JUSTIN</div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#projects-container">Projects</a>
-            <a href="mailto:your-email@example.com">Contact</a>
-        </div>
-    </nav>
+    <div class="app-container">
+        
+        <nav class="navbar">
+            <div class="logo-section">
+                <div class="logo-box">N</div> 
+                <div class="logo-text">Nirmal Justin</div>
+            </div>
 
-    <header class="hero" id="hero-section">
-        </header>
+            <div class="nav-pill">
+                <a href="#" class="nav-item">Search</a>
+                <a href="#" class="nav-item active">Home</a>
+                <a href="#work" class="nav-item">Shows</a>
+                <a href="#movies" class="nav-item">Movies</a>
+                <a href="mailto:email@example.com" class="nav-item">My List</a>
+            </div>
 
-    <div class="main-content" id="projects-container">
+            <div class="nav-right">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-bell"></i>
+                <div style="width:32px; height:32px; background:linear-gradient(45deg, #E50914, #B81D24); border-radius:6px;"></div> 
+            </div>
+        </nav>
+
+        <div class="hero-card" id="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="date-badge">
+                <i class="fas fa-calendar-alt" style="color:#E50914"></i> 
+                Coming June 27
+            </div>
         </div>
+
+        <div class="rows-container" id="projects-container">
+            </div>
+
+    </div>
 
     <div id="project-modal" class="modal">
         <div class="modal-content">
@@ -327,32 +419,26 @@
                 <h2 class="modal-title" id="modal-title">Project Title</h2>
                 
                 <div class="modal-meta">
-                    <span class="tag-highlight" id="modal-tag">Featured</span>
-                    <span class="year-badge" id="modal-year">2025</span>
-                    <span class="meta-badge" id="modal-role">Role</span>
-                    <span class="meta-badge" id="modal-platform">Platform</span>
+                    <span class="highlight-tag" id="modal-tag">98% Match</span>
+                    <span class="dot-separator">•</span>
+                    <span id="modal-year">2025</span>
+                    <span class="dot-separator">•</span>
+                    <span id="modal-role">Lead Designer</span>
                 </div>
 
-                <div class="modal-controls">
-                    <a href="#" target="_blank" id="btn-view-project" class="btn btn-primary">
+                <div class="btn-row" style="margin-bottom: 40px;">
+                    <a href="#" target="_blank" id="btn-view-project" class="btn btn-white">
                         <i class="fas fa-play"></i> View Project
                     </a>
-                    <button class="btn btn-secondary"><i class="fas fa-plus"></i> Save</button>
-                </div>
-
-                <div class="gallery-section">
-                    <h3 style="color:#777; margin-bottom:10px;">Project Gallery</h3>
-                    <div class="gallery-container" id="modal-gallery">
-                        </div>
+                    <button class="btn btn-dark"><i class="fas fa-plus"></i> My List</button>
                 </div>
 
                 <div class="content-grid">
                     <div class="left-col">
-                        <div id="modal-sections">
-                            </div>
+                        <div id="modal-sections"></div>
                     </div>
                     <div class="right-col tech-sidebar">
-                        <h5 style="color:#777; margin-top:0;">Technologies & Tags</h5>
+                        <h5 style="color:#777; margin-top:0; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem;">Technologies</h5>
                         <div id="modal-tags"></div>
                     </div>
                 </div>
@@ -361,99 +447,80 @@
     </div>
 
     <script>
-        // --- DATA SECTION: UPDATE YOUR CONTENT HERE ---
-
+        // --- DATA SECTION --- 
         const portfolioData = {
             hero: {
-                title: "AI POWERED UI UX DESIGNER",
-                subtitle: "I love watching movies, so why not a portfolio like that?",
-                backgroundImage: "https://w0.peakpx.com/wallpaper/158/851/HD-wallpaper-master-alcohol-drug-love-professor-sleeping.jpg"
+                title: "AI POWERED DESIGNER",
+                subtitle: "UI/UX Specialist",
+                description: "Specializing in complex systems, AI interfaces, and educational platforms. Currently designing the future of digital safety and OTT experiences.",
+                backgroundImage: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop"
             },
             categories: [
                 {
-                    name: "Featured & Recommended",
+                    name: "Your Next Watch",
                     projects: [
                         {
                             id: 1,
-                            title: "Redesigning Netflix TV App",
+                            title: "Netflix AI Redesign",
                             year: "2025",
-                            role: "Lead Designer",
-                            platform: "TV App",
-                            tag: "Highly Recommended",
-                            link: "https://www.figma.com", // Paste your actual project link here
+                            role: "TV App Design",
+                            tag: "99% Match",
+                            link: "#",
                             image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop",
-                            // Gallery images (Add your screenshots here)
-                            gallery: [
-                                "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&q=80",
-                                "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&q=80",
-                                "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=500&q=80"
-                            ],
-                            // Full details from Source 6, 7, 61
                             details: {
-                                challenge: "Finding a specific episode, a scene in a movie, or a moment in a series is time-consuming with traditional search. Users struggle to remember season numbers or scrub through long timelines.",
-                                solution: "Introduced an AI-powered search with voice control. It allows natural queries like 'Show me the coffee shop scene in Friends'. Features include Contextual Search, Scene Jumping, and AI-driven suggestions.",
-                                impact: "Reduced friction by removing the need to remember episode numbers. Increased personalized discovery and engagement by allowing users to jump straight to their favorite moments."
+                                challenge: "Users struggle to find specific episodes or scenes in large catalogs. Traditional search fails at context.",
+                                solution: "Designed a Voice AI search that understands context like 'Show me the coffee shop scene in Friends'.",
+                                impact: "Reduced search time by 40% and increased engagement with back-catalog content."
                             },
-                            tags: ["Voice Search", "AI Suggestions", "TV Interface", "User Flows"]
+                            tags: ["Voice UI", "TV Interface", "AI Search"]
                         },
                         {
                             id: 2,
                             title: "Guardian Bubble",
                             year: "2025",
-                            role: "Lead Designer",
-                            platform: "Mobile & Web",
+                            role: "Product Design",
                             tag: "Featured",
                             link: "#",
                             image: "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2070&auto=format&fit=crop",
-                            gallery: [
-                                "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&q=80", 
-                                "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?w=500&q=80"
-                            ],
-                            // Full details from Source 79, 89, 111
                             details: {
-                                challenge: "Modern families need a way to protect children in both digital and physical worlds without being intrusive. The system needed to handle complex data like real-time GPS and emergency alerts reliably.",
-                                solution: "Designed a multi-platform ecosystem (Parent App, Child App, Admin). Key features include Live GPS tracking, Geofencing with Red Zone alerts, 'Superlock' for controlled access, and SOS with live audio.",
-                                impact: "Faster emergency response through SOS tools. Enhanced parental peace of mind with fine-grained controls. Created a scalable design system supporting multiple languages."
+                                challenge: "Creating a child safety app that parents trust but isn't intrusive to children.",
+                                solution: "A multi-platform ecosystem with Live GPS, Geofencing, and a 'Superlock' feature for emergencies.",
+                                impact: "Translated 100+ pages of requirements into a seamless family safety system."
                             },
-                            tags: ["Child Safety", "Live GPS", "Geofencing", "SaaS"]
+                            tags: ["Mobile App", "SaaS", "Geo-fencing"]
                         },
                         {
                             id: 3,
                             title: "The Sportsbook",
                             year: "2025",
-                            role: "Lead Designer",
-                            platform: "SaaS / App",
-                            tag: "Featured",
+                            role: "Web Platform",
+                            tag: "New Season",
                             link: "#",
                             image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop",
-                            gallery: ["https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&q=80"],
-                            // Full details from Source 179, 180, 208
                             details: {
-                                challenge: "Schools in India lacked a unified platform to manage physical education curriculums, assessments, and equipment purchasing efficiently.",
-                                solution: "Built an all-in-one sports education platform. It streamlines PE curriculum management, summer camp coordination, and generates 'Balanced Report Cards' for students. Includes an equipment e-commerce module.",
-                                impact: "Enabled auto-payment workflows for coaches. Streamlined school onboarding and provided robust analytics for student performance tracking."
+                                challenge: "Schools lacked a unified platform for PE curriculum and equipment management.",
+                                solution: "An all-in-one EdTech platform for coaches, students, and admins to manage sports education.",
+                                impact: "Streamlined operations for 50+ schools and enabled auto-payments for coaches."
                             },
-                            tags: ["EdTech", "Curriculum Mgmt", "E-commerce", "Analytics"]
+                            tags: ["EdTech", "B2B Dashboard", "Flutter"]
                         }
                     ]
                 },
                 {
-                    name: "Concept & Experimental",
+                    name: "Concept & Sci-Fi",
                     projects: [
                         {
                             id: 4,
                             title: "Sign Language AI",
                             year: "2024",
                             role: "Concept",
-                            platform: "Mobile Vision",
-                            tag: "Concept",
+                            tag: "Experimental",
                             link: "#",
                             image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop",
-                            gallery: ["https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&q=80"],
                             details: {
-                                challenge: "Digital assistants like Google Assistant are inaccessible to the deaf and hard of hearing community.",
-                                solution: "A concept integration of sign language detection using mobile vision. It interprets gestures in real-time and translates them into text or spoken language that the assistant can process.",
-                                impact: "Would significantly increase accessibility, allowing the deaf community to interact seamlessly with voice-first technology."
+                                challenge: "Voice assistants are inaccessible to the deaf community.",
+                                solution: "Mobile vision integration that translates sign language gestures into voice commands for Google Assistant.",
+                                impact: "Opened digital assistant technology to a completely new user demographic."
                             },
                             tags: ["Accessibility", "Machine Learning", "Mobile Vision"]
                         },
@@ -461,16 +528,14 @@
                             id: 5,
                             title: "Vision Pro Colors",
                             year: "2024",
-                            role: "Concept",
-                            platform: "Vision Pro",
+                            role: "Spatial Design",
                             tag: "Concept",
                             link: "#",
                             image: "https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=2070&auto=format&fit=crop",
-                            gallery: ["https://images.unsplash.com/photo-1626379953822-baec19c3accd?w=500&q=80"],
                             details: {
-                                challenge: "Color blind individuals struggle to distinguish certain hues in their daily environment.",
-                                solution: "An AR app for Apple Vision Pro that provides real-time color correction. It uses 'Type-Specific Adjustments' (e.g., for Protanopia) and overlays color names on objects.",
-                                impact: "Empowers users to see 'True Colors' and navigate their environment with greater confidence using Spatial Computing."
+                                challenge: "Color blindness affects daily tasks; current tools are clunky.",
+                                solution: "AR overlay for Apple Vision Pro that corrects colors in real-time and labels them.",
+                                impact: "Allowed users to see 'True Colors' in their natural environment without phone filters."
                             },
                             tags: ["Spatial Computing", "AR/VR", "Accessibility"]
                         }
@@ -488,42 +553,55 @@
 
         function loadHero() {
             const hero = document.getElementById('hero-section');
-            const { title, subtitle, backgroundImage } = portfolioData.hero;
-            hero.style.backgroundImage = `linear-gradient(to top, #141414 10%, transparent 90%), url('${backgroundImage}')`;
-            hero.innerHTML = `
-                <div class="hero-content">
-                    <h1 class="hero-title">${title}</h1>
-                    <h2 class="hero-subtitle">${subtitle}</h2>
-                    <div style="margin-top:20px;">
-                        <button class="btn btn-primary" onclick="scrollToProjects()"><i class="fas fa-play"></i> My Work</button>
-                        <button class="btn btn-secondary"><i class="fas fa-user"></i> About Me</button>
-                    </div>
+            const { title, subtitle, description, backgroundImage } = portfolioData.hero;
+            
+            hero.style.backgroundImage = `url('${backgroundImage}')`;
+            
+            // Create the content overlay similar to "Squid Game" title position
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'hero-content';
+            contentDiv.innerHTML = `
+                <div class="hero-logo-text">${title}</div>
+                <div class="hero-meta">
+                    <span style="color:#46d369; font-weight:800;">Top 10 Design</span>
+                    <span class="dot-separator">•</span>
+                    <span>${subtitle}</span>
+                    <span class="dot-separator">•</span>
+                    <span>2025</span>
+                    <span class="dot-separator">•</span>
+                    <span style="border:1px solid #777; padding:0 4px; font-size:0.8rem;">HD</span>
+                </div>
+                <p class="hero-desc">${description}</p>
+                <div class="btn-row">
+                    <button class="btn btn-white" onclick="scrollToProjects()"><i class="fas fa-play"></i> My Work</button>
+                    <button class="btn btn-dark"><i class="fas fa-info-circle"></i> More Info</button>
                 </div>
             `;
+            hero.appendChild(contentDiv);
         }
 
         function loadCategories() {
             const container = document.getElementById('projects-container');
+            
             portfolioData.categories.forEach(category => {
                 const categoryHtml = `
-                    <div class="category">
-                        <h3 class="category-title">${category.name}</h3>
-                        <div class="row">
-                            ${category.projects.map(project => `
-                                <div class="card" onclick="openModal(${project.id})" style="background-image: url('${project.image}')">
-                                    <div class="card-info">
-                                        <h4>${project.title}</h4>
-                                        <small>${project.role}</small>
-                                    </div>
+                    <h3 class="row-header">${category.name}</h3>
+                    <div class="row-scroll">
+                        ${category.projects.map(project => `
+                            <div class="project-card" onclick="openModal(${project.id})" style="background-image: url('${project.image}')">
+                                <div class="card-info">
+                                    <h4 style="margin:0; font-size:1rem;">${project.title}</h4>
+                                    <small style="color:#ccc;">${project.role}</small>
                                 </div>
-                            `).join('')}
-                        </div>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
                 container.innerHTML += categoryHtml;
             });
         }
 
+        // --- MODAL LOGIC ---
         const modal = document.getElementById('project-modal');
         const closeBtn = document.querySelector('.close-btn');
 
@@ -536,30 +614,15 @@
 
             if(!selectedProject) return;
 
-            // Header & Meta
             document.getElementById('modal-header').style.backgroundImage = `url('${selectedProject.image}')`;
             document.getElementById('modal-title').innerText = selectedProject.title;
+            document.getElementById('modal-tag').innerText = selectedProject.tag;
             document.getElementById('modal-year').innerText = selectedProject.year;
             document.getElementById('modal-role').innerText = selectedProject.role;
-            document.getElementById('modal-platform').innerText = selectedProject.platform;
-            document.getElementById('modal-tag').innerText = selectedProject.tag;
+            
+            const btnLink = document.getElementById('btn-view-project');
+            btnLink.href = selectedProject.link;
 
-            // Link "View Project" Button
-            const viewBtn = document.getElementById('btn-view-project');
-            viewBtn.href = selectedProject.link;
-
-            // Render Gallery
-            const galleryContainer = document.getElementById('modal-gallery');
-            if(selectedProject.gallery && selectedProject.gallery.length > 0) {
-                galleryContainer.innerHTML = selectedProject.gallery.map(img => 
-                    `<img src="${img}" class="gallery-img" onclick="window.open(this.src)">`
-                ).join('');
-                document.querySelector('.gallery-section').style.display = 'block';
-            } else {
-                document.querySelector('.gallery-section').style.display = 'none';
-            }
-
-            // Render Detailed Sections (Problem, Solution, Impact)
             const sectionsContainer = document.getElementById('modal-sections');
             const d = selectedProject.details;
             sectionsContainer.innerHTML = `
@@ -577,7 +640,6 @@
                 </div>
             `;
 
-            // Render Tags
             const tagsContainer = document.getElementById('modal-tags');
             tagsContainer.innerHTML = selectedProject.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('');
 
