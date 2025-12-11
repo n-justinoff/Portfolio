@@ -28,10 +28,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Prevent scrolling on body, scroll inside app */
+            overflow: hidden; 
         }
 
-        /* --- THE TV CONTAINER (Floating Look) --- */
+        /* --- THE TV CONTAINER --- */
         .app-container {
             width: 95%;
             height: 95vh;
@@ -39,9 +39,8 @@
             background-color: var(--bg-app);
             border-radius: 20px;
             position: relative;
-            overflow-y: auto; /* Scroll inside this container */
+            overflow-y: auto; 
             box-shadow: 0 0 50px rgba(20,20,20,0.5);
-            /* Hide scrollbar for clean look */
             scrollbar-width: none; 
         }
         .app-container::-webkit-scrollbar { display: none; }
@@ -49,267 +48,146 @@
         /* --- NAVIGATION --- */
         .navbar {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 0; left: 0; width: 100%;
             padding: 30px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             z-index: 100;
-            box-sizing: border-box;
             background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
         .logo-box {
-            width: 35px;
-            height: 35px;
+            width: 35px; height: 35px;
             background-color: var(--red);
             border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.2rem;
-            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1.2rem; color: white;
         }
 
-        /* The Pill Navigation (Center) */
         .nav-pill {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-            background: rgba(0,0,0,0.3); /* Slight dark backing */
-            padding: 4px;
-            border-radius: 30px;
+            position: absolute; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 5px;
+            background: rgba(0,0,0,0.3);
+            padding: 4px; border-radius: 30px;
             backdrop-filter: blur(10px);
         }
 
         .nav-item {
-            color: var(--grey);
-            text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
+            color: var(--grey); text-decoration: none;
+            padding: 8px 20px; border-radius: 20px;
+            font-size: 0.9rem; font-weight: 500; transition: all 0.2s;
         }
-
         .nav-item:hover { color: var(--white); }
+        .nav-item.active { background-color: var(--white); color: black; font-weight: 700; }
 
-        .nav-item.active {
-            background-color: var(--white);
-            color: black;
-            font-weight: 700;
-        }
+        .nav-right { display: flex; gap: 20px; font-size: 1.2rem; color: var(--white); }
 
-        .nav-right {
-            display: flex;
-            gap: 20px;
-            font-size: 1.2rem;
-            color: var(--white);
-        }
-
-        /* --- HERO SECTION (Exact Match) --- */
+        /* --- HERO SECTION --- */
         .hero-card {
-            width: 96%;
-            height: 85vh; /* Tall hero like screenshot */
+            width: 96%; height: 85vh;
             margin: 20px auto 0;
             border-radius: 16px;
-            background-size: cover;
-            background-position: center;
+            background-size: cover; background-position: center;
             position: relative;
-            /* Using a high-res placeholder that looks like design work */
             background-image: url('https://cdn.britannica.com/49/182849-050-4C7FE34F/scene-Iron-Man.jpg');
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Gradient Overlay: Clear top, Dark bottom */
         .hero-overlay {
-            position: absolute;
-            top: 0; 
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(20,20,20,0.6) 80%, #141414 100%);
             border-radius: 16px;
         }
 
         .hero-content {
-            position: absolute;
-            bottom: 60px; /* Positioned up from bottom */
-            left: 60px;
-            max-width: 800px;
-            z-index: 10;
+            position: absolute; bottom: 60px; left: 60px;
+            max-width: 800px; z-index: 10;
         }
 
-        /* The "Logo" Title */
         .hero-title {
-            font-size: 6rem; /* Massive size */
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.9;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-            /* Gradient text effect similar to metallic logos */
+            font-size: 6rem; font-weight: 900; text-transform: uppercase;
+            line-height: 0.9; margin-bottom: 20px; letter-spacing: -2px;
             background: linear-gradient(to bottom, #ffffff 0%, #cccccc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
         }
 
-        /* Metadata Row (Show • 2025 • TV-MA) */
         .hero-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 25px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            display: flex; align-items: center; gap: 12px;
+            font-size: 1.1rem; font-weight: 600; color: var(--white);
+            margin-bottom: 25px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .match-score { color: var(--green); font-weight: 800; }
-        
-        .meta-dot {
-            width: 4px;
-            height: 4px;
-            background-color: var(--grey);
-            border-radius: 50%;
-        }
+        .meta-dot { width: 4px; height: 4px; background-color: var(--grey); border-radius: 50%; }
 
         .hero-desc {
-            font-size: 1.2rem;
-            line-height: 1.5;
-            color: #ddd;
-            max-width: 600px;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            font-size: 1.2rem; line-height: 1.5; color: #ddd;
+            max-width: 600px; margin-bottom: 30px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
+        .hero-buttons { display: flex; gap: 15px; }
 
         .btn {
-            border: none;
-            padding: 12px 32px;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.2s;
-            text-decoration: none;
+            border: none; padding: 12px 32px; border-radius: 6px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; gap: 10px;
+            transition: transform 0.2s; text-decoration: none;
         }
         .btn:hover { transform: scale(1.05); }
-
         .btn-white { background-color: var(--white); color: black; }
         .btn-grey { background-color: rgba(109, 109, 110, 0.7); color: var(--white); }
 
-        /* "Coming June 27" Badge on the Right */
         .date-badge {
-            position: absolute;
-            bottom: 60px;
-            right: 60px;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--white);
-            font-weight: 600;
-            border-left: 3px solid var(--red); /* Red accent line */
+            position: absolute; bottom: 60px; right: 60px;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
+            padding: 12px 24px; border-radius: 8px;
+            display: flex; align-items: center; gap: 10px;
+            color: var(--white); font-weight: 600;
+            border-left: 3px solid var(--red);
         }
 
         /* --- ROWS SECTION --- */
         .rows-container {
             padding: 20px 60px 60px 60px;
-            margin-top: -40px; /* Pull up slightly */
-            position: relative;
-            z-index: 20;
+            margin-top: -40px; position: relative; z-index: 20;
         }
 
-        .row-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #e5e5e5;
-        }
+        .row-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: #e5e5e5; }
 
-        .row {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 20px;
-        }
+        .row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; }
         .row::-webkit-scrollbar { display: none; }
 
         .card {
-            min-width: 300px;
-            height: 170px;
+            min-width: 300px; height: 170px;
             border-radius: 8px;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-            position: relative;
-            flex-shrink: 0;
+            background-size: cover; background-position: center;
+            cursor: pointer; transition: transform 0.3s;
+            position: relative; flex-shrink: 0;
         }
-
-        .card:hover {
-            transform: scale(1.1); /* Pop effect */
-            z-index: 50;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-        }
+        .card:hover { transform: scale(1.1); z-index: 50; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
 
         .card-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
+            position: absolute; bottom: 0; left: 0; width: 100%;
             padding: 10px;
             background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
+            opacity: 0; transition: opacity 0.3s;
             border-radius: 0 0 8px 8px;
         }
         .card:hover .card-overlay { opacity: 1; }
 
-        /* --- MODAL --- */
+        /* --- PREVIEW MODAL --- */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
+            display: none; position: fixed; z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
             overflow-y: auto;
         }
-
         .modal-content {
-            background-color: #181818;
-            margin: 50px auto;
+            background-color: #181818; margin: 50px auto;
             width: 90%; max-width: 900px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
+            border-radius: 12px; overflow: hidden; position: relative;
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
-
         .close-btn {
             position: absolute; top: 20px; right: 20px;
             background: #181818; color: white;
@@ -317,33 +195,72 @@
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; z-index: 10; font-size: 1.5rem;
         }
-
         .modal-header { height: 450px; background-size: cover; background-position: center; position: relative; }
         .modal-body { padding: 40px; margin-top: -100px; position: relative; background: linear-gradient(to bottom, transparent, #181818 100px); }
-        
-        /* Grid for details */
         .detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 30px; }
         .tag-pill { display: inline-block; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; margin: 2px; }
+
+        /* --- 5. INNER PAGE (Full Project View) --- */
+        .inner-page {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--bg-app);
+            z-index: 3000; /* Higher than modal */
+            transform: translateY(100%); /* Hidden by default */
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow-y: auto;
+        }
+        .inner-page.active { transform: translateY(0); }
+
+        .inner-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 20px 60px;
+            display: flex; align-items: center;
+            background: rgba(20,20,20,0.8); backdrop-filter: blur(10px);
+            z-index: 3001; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-button {
+            background: transparent; border: 1px solid rgba(255,255,255,0.3);
+            color: white; padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            font-size: 0.9rem; transition: 0.3s;
+        }
+        .back-button:hover { background: white; color: black; }
+
+        .inner-content-container {
+            max-width: 1000px; margin: 0 auto;
+            padding: 120px 20px 100px 20px;
+        }
+
+        .inner-hero-img {
+            width: 100%; height: 500px; object-fit: cover;
+            border-radius: 12px; margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .inner-title-block { margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .inner-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; color: white; }
+        
+        .project-prose h2 { color: var(--white); margin-top: 40px; font-size: 1.8rem; }
+        .project-prose p { color: #cccccc; line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px; }
+        .project-prose ul { color: #cccccc; line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px; padding-left: 20px; }
 
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        
         <div class="navbar">
             <div class="logo-area">
                 <div class="logo-box">N</div>
             </div>
-
             <div class="nav-pill">
                 <a href="#" class="nav-item">Search</a>
                 <a href="#" class="nav-item active">Home</a>
-                <a href="#projects" class="nav-item">Projects</a>
-                <a href="#about" class="nav-item">About</a>
+                <a href="#work-section" class="nav-item">Projects</a>
                 <a href="mailto:email@me.com" class="nav-item">Contact</a>
             </div>
-
             <div class="nav-right">
                 <i class="fas fa-search" style="margin-right:20px;"></i>
                 <i class="fas fa-bell"></i>
@@ -352,10 +269,8 @@
 
         <div class="hero-card" id="hero-bg">
             <div class="hero-overlay"></div>
-            
             <div class="hero-content">
                 <div class="hero-title">AI POWERED<br>DESIGNER</div>
-                
                 <div class="hero-meta">
                     <span class="match-score">98% Match</span>
                     <span class="meta-dot"></span>
@@ -365,15 +280,12 @@
                     <span class="meta-dot"></span>
                     <span style="border:1px solid #777; padding:0 5px; font-size:0.8rem;">HD</span>
                 </div>
-
-                <p class="hero-desc">I love watching movies, so why not a portfolio like that? Specializing in complex systems, AI interfaces, and educational platforms.</p>
-
+                <p class="hero-desc">Specializing in complex systems, AI interfaces, and educational platforms.</p>
                 <div class="hero-buttons">
                     <button class="btn btn-white" onclick="scrollToWork()"><i class="fas fa-play"></i> View Work</button>
                     <button class="btn btn-grey"><i class="fas fa-info-circle"></i> More Info</button>
                 </div>
             </div>
-
             <div class="date-badge">
                 <i class="far fa-calendar-alt" style="color:#E50914;"></i>
                 <span>Available for Hire</span>
@@ -382,7 +294,6 @@
 
         <div class="rows-container" id="work-section">
             </div>
-
     </div>
 
     <div id="project-modal" class="modal">
@@ -397,12 +308,10 @@
                     <span class="match-score" id="modal-tag">Featured</span>
                     <span class="meta-dot"></span>
                     <span id="modal-year">2025</span>
-                    <span class="meta-dot"></span>
-                    <span id="modal-role">Role</span>
                 </div>
                 
                 <div class="hero-buttons">
-                    <a id="btn-link" href="#" target="_blank" class="btn btn-white"><i class="fas fa-external-link-alt"></i> View Project</a>
+                    <button id="btn-view-project" class="btn btn-white"><i class="fas fa-eye"></i> View Project</button>
                 </div>
 
                 <div class="detail-grid">
@@ -416,8 +325,30 @@
         </div>
     </div>
 
+    <div class="inner-page" id="full-project-page">
+        <div class="inner-nav">
+            <button class="back-button" onclick="closeFullProject()">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+
+        <div class="inner-content-container">
+            <h1 class="inner-title" id="full-title">Project Title</h1>
+            <div class="hero-meta" style="margin-bottom:30px;">
+                <span class="match-score">Case Study</span>
+                <span class="meta-dot"></span>
+                <span id="full-role">Lead Designer</span>
+            </div>
+
+            <img src="" id="full-image" class="inner-hero-img" alt="Project Hero">
+
+            <div class="project-prose" id="full-content-body">
+                </div>
+        </div>
+    </div>
+
     <script>
-        // --- DATA ---
+        // --- DATA WITH FULL CONTENT ---
         const data = [
             {
                 category: "Featured Projects",
@@ -428,10 +359,23 @@
                         role: "Lead Designer",
                         year: "2025",
                         tag: "99% Match",
-                        desc: "<b>Challenge:</b> Users struggle to find specific scenes.<br><b>Solution:</b> Designed a Voice AI search that understands context like 'Show me the coffee shop scene in Friends'.<br><b>Impact:</b> Reduced search friction by 40%.",
+                        desc: "<b>Challenge:</b> Users struggle to find specific scenes.<br><b>Solution:</b> Designed a Voice AI search.",
                         tech: ["Voice UI", "AI Search", "Figma"],
                         image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop",
-                        link: "https://www.figma.com"
+                        fullContent: `
+                            <h2>The Challenge</h2>
+                            <p>Despite Netflix's powerful recommendation engine, users often struggle to find specific content based on vague memories, such as "that movie with the coffee shop scene." Traditional keyword search fails in these context-heavy scenarios.</p>
+                            <h2>The Solution</h2>
+                            <p>We introduced a Natural Language Processing (NLP) layer to the search experience. The new interface allows users to ask complex questions via voice or text.</p>
+                            <h2>Key Features</h2>
+                            <ul>
+                                <li><strong>Contextual Search:</strong> Understands queries like "Movies that feel like Stranger Things but funnier."</li>
+                                <li><strong>Scene Jump:</strong> Direct navigation to specific timestamps based on dialogue description.</li>
+                                <li><strong>Mood Matching:</strong> A new filtering system based on emotional tone rather than genre.</li>
+                            </ul>
+                            <h2>Results</h2>
+                            <p>User testing showed a 40% reduction in "search abandonment" and a 15% increase in watch time for older catalog titles.</p>
+                        `
                     },
                     {
                         id: 2,
@@ -439,10 +383,17 @@
                         role: "Product Design",
                         year: "2025",
                         tag: "Safety Tech",
-                        desc: "A multi-platform safety ecosystem for modern families. Features live GPS tracking, geofencing with Red Zone alerts, and 'Superlock' for controlled phone access.",
+                        desc: "A multi-platform safety ecosystem for modern families.",
                         tech: ["Mobile App", "GPS", "SaaS"],
                         image: "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2070&auto=format&fit=crop",
-                        link: "#"
+                        fullContent: `
+                            <h2>Overview</h2>
+                            <p>Guardian Bubble is designed to give parents peace of mind without being invasive. The goal was to create a UI that feels supportive rather than surveillance-heavy.</p>
+                            <h2>Design Philosophy</h2>
+                            <p>We used soft rounded corners, a calming color palette (blues and teals), and positive reinforcement notifications. The "Red Zone" alerts are distinct but designed to trigger action, not panic.</p>
+                            <h2>The "Superlock" Feature</h2>
+                            <p>One of the most complex UX challenges was the "Superlock" feature, which allows parents to lock a child's device remotely during study hours. We designed a negotiation flow where children can request "Unlock credits" by completing chores, turning a restriction into a gamified experience.</p>
+                        `
                     },
                     {
                         id: 3,
@@ -450,10 +401,17 @@
                         role: "Web Platform",
                         year: "2025",
                         tag: "EdTech",
-                        desc: "An all-in-one sports education platform catering to students, coaches, and schools. Streamlines PE curriculum management and summer camp coordination.",
+                        desc: "An all-in-one sports education platform catering to students, coaches, and schools.",
                         tech: ["Flutter", "Web App", "Dashboard"],
                         image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop",
-                        link: "#"
+                        fullContent: `
+                            <h2>Problem Statement</h2>
+                            <p>Physical Education (PE) teachers often rely on fragmented tools—spreadsheets for grading, WhatsApp for communication, and paper for curriculum planning.</p>
+                            <h2>The Dashboard</h2>
+                            <p>I designed a unified dashboard that provides a snapshot of student performance, upcoming tournaments, and inventory management. The design prioritizes data density without clutter, using collapsible sidebars and modal-based data entry.</p>
+                            <h2>Impact</h2>
+                            <p>Adopted by 15 schools in the pilot phase, reducing administrative work by an estimated 10 hours per week per teacher.</p>
+                        `
                     }
                 ]
             },
@@ -466,10 +424,15 @@
                         role: "Concept",
                         year: "2024",
                         tag: "Accessibility",
-                        desc: "Making Google Assistant accessible to the deaf community via mobile vision sign language detection.",
+                        desc: "Making Google Assistant accessible to the deaf community.",
                         tech: ["AI/ML", "Accessibility", "Mobile Vision"],
                         image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop",
-                        link: "#"
+                        fullContent: `
+                            <h2>Concept</h2>
+                            <p>This project explores how computer vision on mobile devices can bridge the gap between voice assistants and the Deaf community.</p>
+                            <h2>Interaction Model</h2>
+                            <p>The interface uses the front-facing camera to detect ASL (American Sign Language) syntax. The UI provides real-time visual feedback, drawing skeleton overlays on the hands to confirm the system is tracking gestures correctly.</p>
+                        `
                     },
                     {
                         id: 5,
@@ -477,16 +440,19 @@
                         role: "Spatial Design",
                         year: "2024",
                         tag: "AR/VR",
-                        desc: "An AR app for Apple Vision Pro that provides real-time color correction for color blind individuals.",
+                        desc: "Real-time color correction for color blind individuals.",
                         tech: ["Spatial Computing", "VisionOS", "AR"],
                         image: "https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=2070&auto=format&fit=crop",
-                        link: "#"
+                        fullContent: `
+                            <h2>Spatial Interface</h2>
+                            <p>Designed for Apple Vision Pro, this app overlays a filter on the real world. Users can toggle between Protanopia, Deuteranopia, and Tritanopia modes using eye-tracking and pinch gestures.</p>
+                        `
                     }
                 ]
             }
         ];
 
-        // --- RENDER ---
+        // --- RENDER ROWS ---
         const container = document.getElementById('work-section');
         
         data.forEach(cat => {
@@ -511,9 +477,10 @@
             document.getElementById('work-section').scrollIntoView({behavior: 'smooth'});
         }
 
-        // --- MODAL ---
+        // --- MODAL LOGIC ---
         const modal = document.getElementById('project-modal');
         const closeBtn = document.querySelector('.close-btn');
+        let currentActiveItem = null; // Store currently opened item
 
         function openModal(id) {
             let item;
@@ -524,13 +491,19 @@
             
             if(!item) return;
 
+            currentActiveItem = item; // Save for full view
+
             document.getElementById('modal-header').style.backgroundImage = `url('${item.image}')`;
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-tag').innerText = item.tag;
             document.getElementById('modal-year').innerText = item.year;
-            document.getElementById('modal-role').innerText = item.role;
             document.getElementById('modal-desc').innerHTML = item.desc;
-            document.getElementById('btn-link').href = item.link;
+            
+            // Set OnClick for the View Project button
+            const viewBtn = document.getElementById('btn-view-project');
+            viewBtn.onclick = function() {
+                openFullProject();
+            };
             
             document.getElementById('modal-tech').innerHTML = item.tech.map(t => `<span class="tag-pill">${t}</span>`).join('');
 
@@ -539,6 +512,32 @@
 
         closeBtn.onclick = () => modal.style.display = "none";
         window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+
+        // --- FULL INNER PAGE LOGIC ---
+        const innerPage = document.getElementById('full-project-page');
+
+        function openFullProject() {
+            if(!currentActiveItem) return;
+
+            // 1. Populate Inner Page Data
+            document.getElementById('full-title').innerText = currentActiveItem.title;
+            document.getElementById('full-role').innerText = currentActiveItem.role;
+            document.getElementById('full-image').src = currentActiveItem.image;
+            document.getElementById('full-content-body').innerHTML = currentActiveItem.fullContent;
+
+            // 2. Close the modal
+            modal.style.display = "none";
+
+            // 3. Show the inner page
+            innerPage.classList.add('active');
+            
+            // 4. Scroll to top
+            innerPage.scrollTop = 0;
+        }
+
+        function closeFullProject() {
+            innerPage.classList.remove('active');
+        }
 
     </script>
 </body>
