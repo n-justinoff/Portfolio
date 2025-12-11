@@ -8,226 +8,218 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- TV APP STYLE CSS --- */
+        /* --- GLOBAL & RESET --- */
         :root {
-            --bg-body: #050505; /* Outer dark background */
-            --bg-app: #141414;  /* The "TV Screen" background */
-            --primary-white: #ffffff;
-            --text-grey: #b3b3b3;
-            --accent-red: #E50914;
+            --bg-body: #000000;
+            --bg-app: #141414;
+            --white: #ffffff;
+            --grey: #b3b3b3;
+            --red: #E50914;
+            --green: #46d369;
         }
 
         body {
             background-color: var(--bg-body);
-            color: var(--primary-white);
+            color: var(--white);
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 40px; /* Creates the "floating" look */
-            min-height: 100vh;
-            box-sizing: border-box;
+            padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden; /* Prevent scrolling on body, scroll inside app */
         }
 
-        /* The "TV Screen" Container */
+        /* --- THE TV CONTAINER (Floating Look) --- */
         .app-container {
-            width: 100%;
-            max-width: 1600px;
+            width: 95%;
+            height: 95vh;
+            max-width: 1800px;
             background-color: var(--bg-app);
-            border-radius: 24px;
+            border-radius: 20px;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            min-height: 90vh;
-            border: 1px solid #333;
+            overflow-y: auto; /* Scroll inside this container */
+            box-shadow: 0 0 50px rgba(20,20,20,0.5);
+            /* Hide scrollbar for clean look */
+            scrollbar-width: none; 
         }
+        .app-container::-webkit-scrollbar { display: none; }
 
-        /* --- NAVIGATION (PILL STYLE) --- */
+        /* --- NAVIGATION --- */
         .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px 50px;
             position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 100;
             box-sizing: border-box;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
 
-        .logo-section {
+        .logo-area {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
         .logo-box {
-            background: var(--accent-red);
             width: 35px;
             height: 35px;
-            border-radius: 8px;
+            background-color: var(--red);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: white;
-            box-shadow: 0 4px 10px rgba(229, 9, 20, 0.4);
         }
 
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        /* The Pill Nav in Center */
+        /* The Pill Navigation (Center) */
         .nav-pill {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             gap: 5px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px;
-            border-radius: 40px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3); /* Slight dark backing */
+            padding: 4px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .nav-item {
-            color: var(--text-grey);
+            color: var(--grey);
             text-decoration: none;
-            padding: 8px 24px;
-            border-radius: 30px;
-            font-size: 0.95rem;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
         }
 
-        .nav-item:hover {
-            color: white;
-            background: rgba(255,255,255,0.1);
-        }
+        .nav-item:hover { color: var(--white); }
 
         .nav-item.active {
-            background-color: white;
+            background-color: var(--white);
             color: black;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
         }
 
         .nav-right {
             display: flex;
-            gap: 25px;
-            align-items: center;
-            color: white;
+            gap: 20px;
             font-size: 1.2rem;
+            color: var(--white);
         }
 
-        /* --- HERO CARD --- */
+        /* --- HERO SECTION (Exact Match) --- */
         .hero-card {
-            height: 85vh;
             width: 96%;
-            margin: 20px auto 0 auto; /* Centered with top margin */
-            border-radius: 24px;
+            height: 85vh; /* Tall hero like screenshot */
+            margin: 20px auto 0;
+            border-radius: 16px;
             background-size: cover;
             background-position: center;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            transition: background-image 0.5s ease-in-out;
-            overflow: hidden;
+            /* Using a high-res placeholder that looks like design work */
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Gradient Overlay for text readability */
+        /* Gradient Overlay: Clear top, Dark bottom */
         .hero-overlay {
             position: absolute;
-            top: 0;
+            top: 0; 
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(0deg, #141414 0%, rgba(20,20,20,0.4) 30%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(20,20,20,0.6) 80%, #141414 100%);
+            border-radius: 16px;
         }
 
         .hero-content {
             position: absolute;
-            bottom: 80px;
+            bottom: 60px; /* Positioned up from bottom */
             left: 60px;
-            max-width: 700px;
+            max-width: 800px;
             z-index: 10;
         }
 
-        .hero-logo-text {
-            font-family: 'Inter', sans-serif;
+        /* The "Logo" Title */
+        .hero-title {
+            font-size: 6rem; /* Massive size */
             font-weight: 900;
-            font-size: 5rem;
-            margin-bottom: 15px;
-            line-height: 1;
             text-transform: uppercase;
-            letter-spacing: -3px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            background: linear-gradient(to bottom, #fff, #ddd);
+            line-height: 0.9;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            /* Gradient text effect similar to metallic logos */
+            background: linear-gradient(to bottom, #ffffff 0%, #cccccc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
         }
 
+        /* Metadata Row (Show • 2025 • TV-MA) */
         .hero-meta {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             font-size: 1.1rem;
-            color: #e5e5e5;
+            font-weight: 600;
+            color: var(--white);
             margin-bottom: 25px;
-            font-weight: 500;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
+
+        .match-score { color: var(--green); font-weight: 800; }
         
-        /* The dots between items */
-        .dot-separator {
-            color: #e50914;
-            font-size: 1.5rem;
-            line-height: 0;
-            margin: 0 5px;
+        .meta-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--grey);
+            border-radius: 50%;
         }
 
         .hero-desc {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 30px;
             font-size: 1.2rem;
-            max-width: 550px;
+            line-height: 1.5;
+            color: #ddd;
+            max-width: 600px;
+            margin-bottom: 30px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .btn-row {
+        .hero-buttons {
             display: flex;
             gap: 15px;
         }
 
         .btn {
-            padding: 14px 35px;
-            border-radius: 12px;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 1.1rem;
             font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
+            cursor: pointer;
+            display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.1rem;
-            transition: transform 0.2s, background-color 0.2s;
-            cursor: pointer;
-            border: none;
+            transition: transform 0.2s;
+            text-decoration: none;
         }
-        
         .btn:hover { transform: scale(1.05); }
 
-        .btn-white { background: white; color: black; }
-        .btn-white:hover { background: #ddd; }
-        
-        .btn-dark { background: rgba(109, 109, 110, 0.6); color: white; backdrop-filter: blur(10px); }
-        .btn-dark:hover { background: rgba(109, 109, 110, 0.8); }
+        .btn-white { background-color: var(--white); color: black; }
+        .btn-grey { background-color: rgba(109, 109, 110, 0.7); color: var(--white); }
 
-        /* "Coming June 27" Badge style */
+        /* "Coming June 27" Badge on the Right */
         .date-badge {
             position: absolute;
             bottom: 60px;
@@ -235,175 +227,160 @@
             background: rgba(0,0,0,0.6);
             backdrop-filter: blur(10px);
             padding: 12px 24px;
-            border-radius: 12px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--white);
             font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
+            border-left: 3px solid var(--red); /* Red accent line */
         }
 
-        /* --- ROWS --- */
+        /* --- ROWS SECTION --- */
         .rows-container {
-            margin-top: -60px; /* Pull up slightly over hero gradient */
-            padding-bottom: 60px;
+            padding: 20px 60px 60px 60px;
+            margin-top: -40px; /* Pull up slightly */
             position: relative;
             z-index: 20;
-            padding-left: 60px; /* Align with hero text */
         }
 
-        .row-header {
-            font-size: 1.3rem;
+        .row-title {
+            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #e5e5e5;
         }
 
-        .row-scroll {
+        .row {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             overflow-x: auto;
             padding-bottom: 20px;
-            padding-right: 60px;
         }
-        
-        .row-scroll::-webkit-scrollbar { display: none; }
+        .row::-webkit-scrollbar { display: none; }
 
-        .project-card {
-            min-width: 320px;
-            height: 180px;
-            border-radius: 12px;
+        .card {
+            min-width: 300px;
+            height: 170px;
+            border-radius: 8px;
             background-size: cover;
             background-position: center;
             cursor: pointer;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s;
             position: relative;
-            border: 2px solid transparent;
+            flex-shrink: 0;
         }
 
-        .project-card:hover {
-            transform: scale(1.05);
-            border-color: rgba(255,255,255,0.8);
+        .card:hover {
+            transform: scale(1.1); /* Pop effect */
             z-index: 50;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
 
-        .card-info {
+        .card-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 15px;
+            bottom: 0; left: 0; width: 100%;
+            padding: 10px;
             background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             opacity: 0;
             transition: opacity 0.3s;
-            border-radius: 0 0 12px 12px;
+            border-radius: 0 0 8px 8px;
         }
+        .card:hover .card-overlay { opacity: 1; }
 
-        .project-card:hover .card-info { opacity: 1; }
-
-        /* --- MODAL (Kept consistent with new style) --- */
+        /* --- MODAL --- */
         .modal {
             display: none;
             position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
             overflow-y: auto;
-            backdrop-filter: blur(10px);
         }
-        
+
         .modal-content {
             background-color: #181818;
-            margin: 40px auto;
-            width: 90%;
-            max-width: 1000px;
-            border-radius: 20px;
+            margin: 50px auto;
+            width: 90%; max-width: 900px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
-            border: 1px solid #333;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            animation: fadeIn 0.4s ease;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
-        .modal-header { height: 500px; background-size: cover; background-position: center; position: relative; }
-        .modal-gradient { position: absolute; bottom: 0; width: 100%; height: 300px; background: linear-gradient(to top, #181818, transparent); }
-        
-        .close-btn { 
-            position: absolute; top: 25px; right: 25px; 
-            font-size: 24px; cursor: pointer; 
-            background: rgba(30,30,30,0.8); color: white;
-            width: 45px; height: 45px; border-radius: 50%; 
+        .close-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: #181818; color: white;
+            width: 40px; height: 40px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: background 0.2s;
-            z-index: 3002;
-        }
-        .close-btn:hover { background: white; color: black; }
-
-        .modal-body { padding: 50px; margin-top: -100px; position: relative; z-index: 10; }
-        .modal-title { font-size: 3.5rem; margin: 0 0 10px 0; font-weight: 900; line-height: 1; }
-        .modal-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 25px; font-weight: 500; color: #aaa; }
-        .highlight-tag { color: #46d369; font-weight: 800; letter-spacing: 0.5px; }
-        
-        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; margin-top: 40px; }
-        .section-title { font-size: 1.2rem; color: white; margin-bottom: 15px; border-left: 3px solid var(--accent-red); padding-left: 15px; font-weight: 700; }
-        .modal-text { font-size: 1.1rem; line-height: 1.7; color: #ccc; margin-bottom: 25px; }
-        
-        .tech-sidebar { background: #222; padding: 25px; border-radius: 12px; height: fit-content; border: 1px solid #333; }
-        .tech-tag { display: block; color: #fff; font-size: 0.9rem; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #333; }
-
-        @media (max-width: 1024px) {
-            body { padding: 0; }
-            .app-container { border-radius: 0; height: 100vh; border: none; }
-            .hero-logo-text { font-size: 3rem; }
-            .nav-pill { display: none; } /* Hide complicated nav on mobile */
-            .rows-container { padding-left: 20px; }
-            .hero-content { left: 20px; bottom: 40px; }
-            .date-badge { display: none; }
-            .content-grid { grid-template-columns: 1fr; }
+            cursor: pointer; z-index: 10; font-size: 1.5rem;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-header { height: 450px; background-size: cover; background-position: center; position: relative; }
+        .modal-body { padding: 40px; margin-top: -100px; position: relative; background: linear-gradient(to bottom, transparent, #181818 100px); }
+        
+        /* Grid for details */
+        .detail-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 30px; }
+        .tag-pill { display: inline-block; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; margin: 2px; }
+
     </style>
 </head>
 <body>
 
     <div class="app-container">
         
-        <nav class="navbar">
-            <div class="logo-section">
-                <div class="logo-box">N</div> 
-                <div class="logo-text">Nirmal Justin</div>
+        <div class="navbar">
+            <div class="logo-area">
+                <div class="logo-box">N</div>
             </div>
 
             <div class="nav-pill">
                 <a href="#" class="nav-item">Search</a>
                 <a href="#" class="nav-item active">Home</a>
-                <a href="#work" class="nav-item">Shows</a>
-                <a href="#movies" class="nav-item">Movies</a>
-                <a href="mailto:email@example.com" class="nav-item">My List</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="mailto:email@me.com" class="nav-item">Contact</a>
             </div>
 
             <div class="nav-right">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" style="margin-right:20px;"></i>
                 <i class="fas fa-bell"></i>
-                <div style="width:32px; height:32px; background:linear-gradient(45deg, #E50914, #B81D24); border-radius:6px;"></div> 
-            </div>
-        </nav>
-
-        <div class="hero-card" id="hero-section">
-            <div class="hero-overlay"></div>
-            <div class="date-badge">
-                <i class="fas fa-calendar-alt" style="color:#E50914"></i> 
-                Coming June 27
             </div>
         </div>
 
-        <div class="rows-container" id="projects-container">
+        <div class="hero-card" id="hero-bg">
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="hero-title">AI POWERED<br>DESIGNER</div>
+                
+                <div class="hero-meta">
+                    <span class="match-score">98% Match</span>
+                    <span class="meta-dot"></span>
+                    <span>2025</span>
+                    <span class="meta-dot"></span>
+                    <span>Lead UI/UX</span>
+                    <span class="meta-dot"></span>
+                    <span style="border:1px solid #777; padding:0 5px; font-size:0.8rem;">HD</span>
+                </div>
+
+                <p class="hero-desc">I love watching movies, so why not a portfolio like that? Specializing in complex systems, AI interfaces, and educational platforms.</p>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-white" onclick="scrollToWork()"><i class="fas fa-play"></i> View Work</button>
+                    <button class="btn btn-grey"><i class="fas fa-info-circle"></i> More Info</button>
+                </div>
+            </div>
+
+            <div class="date-badge">
+                <i class="far fa-calendar-alt" style="color:#E50914;"></i>
+                <span>Available for Hire</span>
+            </div>
+        </div>
+
+        <div class="rows-container" id="work-section">
             </div>
 
     </div>
@@ -412,34 +389,27 @@
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <div class="modal-header" id="modal-header">
-                <div class="modal-gradient"></div>
+                <div style="position:absolute; bottom:0; width:100%; height:100%; background:linear-gradient(to top, #181818, transparent);"></div>
             </div>
-            
             <div class="modal-body">
-                <h2 class="modal-title" id="modal-title">Project Title</h2>
-                
-                <div class="modal-meta">
-                    <span class="highlight-tag" id="modal-tag">98% Match</span>
-                    <span class="dot-separator">•</span>
+                <h1 id="modal-title" style="font-size:3rem; margin:0 0 10px 0;">Title</h1>
+                <div class="hero-meta">
+                    <span class="match-score" id="modal-tag">Featured</span>
+                    <span class="meta-dot"></span>
                     <span id="modal-year">2025</span>
-                    <span class="dot-separator">•</span>
-                    <span id="modal-role">Lead Designer</span>
+                    <span class="meta-dot"></span>
+                    <span id="modal-role">Role</span>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a id="btn-link" href="#" target="_blank" class="btn btn-white"><i class="fas fa-external-link-alt"></i> View Project</a>
                 </div>
 
-                <div class="btn-row" style="margin-bottom: 40px;">
-                    <a href="#" target="_blank" id="btn-view-project" class="btn btn-white">
-                        <i class="fas fa-play"></i> View Project
-                    </a>
-                    <button class="btn btn-dark"><i class="fas fa-plus"></i> My List</button>
-                </div>
-
-                <div class="content-grid">
-                    <div class="left-col">
-                        <div id="modal-sections"></div>
-                    </div>
-                    <div class="right-col tech-sidebar">
-                        <h5 style="color:#777; margin-top:0; text-transform:uppercase; letter-spacing:1px; font-size:0.8rem;">Technologies</h5>
-                        <div id="modal-tags"></div>
+                <div class="detail-grid">
+                    <div id="modal-desc" style="line-height:1.6; color:#ccc;"></div>
+                    <div>
+                        <h4 style="color:#777; margin-top:0;">Technologies</h4>
+                        <div id="modal-tech"></div>
                     </div>
                 </div>
             </div>
@@ -447,221 +417,129 @@
     </div>
 
     <script>
-        // --- DATA SECTION --- 
-        const portfolioData = {
-            hero: {
-                title: "AI POWERED DESIGNER",
-                subtitle: "UI/UX Specialist",
-                description: "Specializing in complex systems, AI interfaces, and educational platforms. Currently designing the future of digital safety and OTT experiences.",
-                backgroundImage: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop"
+        // --- DATA ---
+        const data = [
+            {
+                category: "Featured Projects",
+                items: [
+                    {
+                        id: 1,
+                        title: "Netflix AI Redesign",
+                        role: "Lead Designer",
+                        year: "2025",
+                        tag: "99% Match",
+                        desc: "<b>Challenge:</b> Users struggle to find specific scenes.<br><b>Solution:</b> Designed a Voice AI search that understands context like 'Show me the coffee shop scene in Friends'.<br><b>Impact:</b> Reduced search friction by 40%.",
+                        tech: ["Voice UI", "AI Search", "Figma"],
+                        image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop",
+                        link: "https://www.figma.com"
+                    },
+                    {
+                        id: 2,
+                        title: "Guardian Bubble",
+                        role: "Product Design",
+                        year: "2025",
+                        tag: "Safety Tech",
+                        desc: "A multi-platform safety ecosystem for modern families. Features live GPS tracking, geofencing with Red Zone alerts, and 'Superlock' for controlled phone access.",
+                        tech: ["Mobile App", "GPS", "SaaS"],
+                        image: "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2070&auto=format&fit=crop",
+                        link: "#"
+                    },
+                    {
+                        id: 3,
+                        title: "The Sportsbook",
+                        role: "Web Platform",
+                        year: "2025",
+                        tag: "EdTech",
+                        desc: "An all-in-one sports education platform catering to students, coaches, and schools. Streamlines PE curriculum management and summer camp coordination.",
+                        tech: ["Flutter", "Web App", "Dashboard"],
+                        image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop",
+                        link: "#"
+                    }
+                ]
             },
-            categories: [
-                {
-                    name: "Your Next Watch",
-                    projects: [
-                        {
-                            id: 1,
-                            title: "Netflix AI Redesign",
-                            year: "2025",
-                            role: "TV App Design",
-                            tag: "99% Match",
-                            link: "#",
-                            image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop",
-                            details: {
-                                challenge: "Users struggle to find specific episodes or scenes in large catalogs. Traditional search fails at context.",
-                                solution: "Designed a Voice AI search that understands context like 'Show me the coffee shop scene in Friends'.",
-                                impact: "Reduced search time by 40% and increased engagement with back-catalog content."
-                            },
-                            tags: ["Voice UI", "TV Interface", "AI Search"]
-                        },
-                        {
-                            id: 2,
-                            title: "Guardian Bubble",
-                            year: "2025",
-                            role: "Product Design",
-                            tag: "Featured",
-                            link: "#",
-                            image: "https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=2070&auto=format&fit=crop",
-                            details: {
-                                challenge: "Creating a child safety app that parents trust but isn't intrusive to children.",
-                                solution: "A multi-platform ecosystem with Live GPS, Geofencing, and a 'Superlock' feature for emergencies.",
-                                impact: "Translated 100+ pages of requirements into a seamless family safety system."
-                            },
-                            tags: ["Mobile App", "SaaS", "Geo-fencing"]
-                        },
-                        {
-                            id: 3,
-                            title: "The Sportsbook",
-                            year: "2025",
-                            role: "Web Platform",
-                            tag: "New Season",
-                            link: "#",
-                            image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop",
-                            details: {
-                                challenge: "Schools lacked a unified platform for PE curriculum and equipment management.",
-                                solution: "An all-in-one EdTech platform for coaches, students, and admins to manage sports education.",
-                                impact: "Streamlined operations for 50+ schools and enabled auto-payments for coaches."
-                            },
-                            tags: ["EdTech", "B2B Dashboard", "Flutter"]
-                        }
-                    ]
-                },
-                {
-                    name: "Concept & Sci-Fi",
-                    projects: [
-                        {
-                            id: 4,
-                            title: "Sign Language AI",
-                            year: "2024",
-                            role: "Concept",
-                            tag: "Experimental",
-                            link: "#",
-                            image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop",
-                            details: {
-                                challenge: "Voice assistants are inaccessible to the deaf community.",
-                                solution: "Mobile vision integration that translates sign language gestures into voice commands for Google Assistant.",
-                                impact: "Opened digital assistant technology to a completely new user demographic."
-                            },
-                            tags: ["Accessibility", "Machine Learning", "Mobile Vision"]
-                        },
-                        {
-                            id: 5,
-                            title: "Vision Pro Colors",
-                            year: "2024",
-                            role: "Spatial Design",
-                            tag: "Concept",
-                            link: "#",
-                            image: "https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=2070&auto=format&fit=crop",
-                            details: {
-                                challenge: "Color blindness affects daily tasks; current tools are clunky.",
-                                solution: "AR overlay for Apple Vision Pro that corrects colors in real-time and labels them.",
-                                impact: "Allowed users to see 'True Colors' in their natural environment without phone filters."
-                            },
-                            tags: ["Spatial Computing", "AR/VR", "Accessibility"]
-                        }
-                    ]
-                }
-            ]
-        };
+            {
+                category: "Concept & Experimental",
+                items: [
+                    {
+                        id: 4,
+                        title: "Sign Language AI",
+                        role: "Concept",
+                        year: "2024",
+                        tag: "Accessibility",
+                        desc: "Making Google Assistant accessible to the deaf community via mobile vision sign language detection.",
+                        tech: ["AI/ML", "Accessibility", "Mobile Vision"],
+                        image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop",
+                        link: "#"
+                    },
+                    {
+                        id: 5,
+                        title: "Vision Pro Colors",
+                        role: "Spatial Design",
+                        year: "2024",
+                        tag: "AR/VR",
+                        desc: "An AR app for Apple Vision Pro that provides real-time color correction for color blind individuals.",
+                        tech: ["Spatial Computing", "VisionOS", "AR"],
+                        image: "https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=2070&auto=format&fit=crop",
+                        link: "#"
+                    }
+                ]
+            }
+        ];
 
-        // --- RENDER LOGIC ---
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadHero();
-            loadCategories();
-        });
-
-        function loadHero() {
-            const hero = document.getElementById('hero-section');
-            const { title, subtitle, description, backgroundImage } = portfolioData.hero;
-            
-            hero.style.backgroundImage = `url('${backgroundImage}')`;
-            
-            // Create the content overlay similar to "Squid Game" title position
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'hero-content';
-            contentDiv.innerHTML = `
-                <div class="hero-logo-text">${title}</div>
-                <div class="hero-meta">
-                    <span style="color:#46d369; font-weight:800;">Top 10 Design</span>
-                    <span class="dot-separator">•</span>
-                    <span>${subtitle}</span>
-                    <span class="dot-separator">•</span>
-                    <span>2025</span>
-                    <span class="dot-separator">•</span>
-                    <span style="border:1px solid #777; padding:0 4px; font-size:0.8rem;">HD</span>
-                </div>
-                <p class="hero-desc">${description}</p>
-                <div class="btn-row">
-                    <button class="btn btn-white" onclick="scrollToProjects()"><i class="fas fa-play"></i> My Work</button>
-                    <button class="btn btn-dark"><i class="fas fa-info-circle"></i> More Info</button>
-                </div>
-            `;
-            hero.appendChild(contentDiv);
-        }
-
-        function loadCategories() {
-            const container = document.getElementById('projects-container');
-            
-            portfolioData.categories.forEach(category => {
-                const categoryHtml = `
-                    <h3 class="row-header">${category.name}</h3>
-                    <div class="row-scroll">
-                        ${category.projects.map(project => `
-                            <div class="project-card" onclick="openModal(${project.id})" style="background-image: url('${project.image}')">
-                                <div class="card-info">
-                                    <h4 style="margin:0; font-size:1rem;">${project.title}</h4>
-                                    <small style="color:#ccc;">${project.role}</small>
-                                </div>
-                            </div>
-                        `).join('')}
+        // --- RENDER ---
+        const container = document.getElementById('work-section');
+        
+        data.forEach(cat => {
+            container.innerHTML += `<h3 class="row-title">${cat.category}</h3>`;
+            let rowHtml = `<div class="row">`;
+            cat.items.forEach(item => {
+                rowHtml += `
+                    <div class="card" onclick="openModal(${item.id})" style="background-image: url('${item.image}')">
+                        <div class="card-overlay">
+                            <h4 style="margin:0">${item.title}</h4>
+                            <small style="color:#ccc">${item.role}</small>
+                        </div>
                     </div>
                 `;
-                container.innerHTML += categoryHtml;
             });
+            rowHtml += `</div>`;
+            container.innerHTML += rowHtml;
+        });
+
+        // --- SCROLL ---
+        function scrollToWork() {
+            document.getElementById('work-section').scrollIntoView({behavior: 'smooth'});
         }
 
-        // --- MODAL LOGIC ---
+        // --- MODAL ---
         const modal = document.getElementById('project-modal');
         const closeBtn = document.querySelector('.close-btn');
 
-        function openModal(projectId) {
-            let selectedProject;
-            portfolioData.categories.forEach(cat => {
-                const found = cat.projects.find(p => p.id === projectId);
-                if(found) selectedProject = found;
+        function openModal(id) {
+            let item;
+            data.forEach(c => {
+                const found = c.items.find(i => i.id === id);
+                if(found) item = found;
             });
-
-            if(!selectedProject) return;
-
-            document.getElementById('modal-header').style.backgroundImage = `url('${selectedProject.image}')`;
-            document.getElementById('modal-title').innerText = selectedProject.title;
-            document.getElementById('modal-tag').innerText = selectedProject.tag;
-            document.getElementById('modal-year').innerText = selectedProject.year;
-            document.getElementById('modal-role').innerText = selectedProject.role;
             
-            const btnLink = document.getElementById('btn-view-project');
-            btnLink.href = selectedProject.link;
+            if(!item) return;
 
-            const sectionsContainer = document.getElementById('modal-sections');
-            const d = selectedProject.details;
-            sectionsContainer.innerHTML = `
-                <div class="detail-section">
-                    <h3 class="section-title">The Challenge</h3>
-                    <p class="modal-text">${d.challenge}</p>
-                </div>
-                <div class="detail-section">
-                    <h3 class="section-title">The Solution</h3>
-                    <p class="modal-text">${d.solution}</p>
-                </div>
-                <div class="detail-section">
-                    <h3 class="section-title">Impact</h3>
-                    <p class="modal-text">${d.impact}</p>
-                </div>
-            `;
-
-            const tagsContainer = document.getElementById('modal-tags');
-            tagsContainer.innerHTML = selectedProject.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('');
+            document.getElementById('modal-header').style.backgroundImage = `url('${item.image}')`;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-tag').innerText = item.tag;
+            document.getElementById('modal-year').innerText = item.year;
+            document.getElementById('modal-role').innerText = item.role;
+            document.getElementById('modal-desc').innerHTML = item.desc;
+            document.getElementById('btn-link').href = item.link;
+            
+            document.getElementById('modal-tech').innerHTML = item.tech.map(t => `<span class="tag-pill">${t}</span>`).join('');
 
             modal.style.display = "block";
-            document.body.style.overflow = "hidden";
         }
 
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
+        closeBtn.onclick = () => modal.style.display = "none";
+        window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-        }
-
-        function scrollToProjects() {
-            document.getElementById('projects-container').scrollIntoView({behavior: 'smooth'});
-        }
     </script>
 </body>
 </html>
